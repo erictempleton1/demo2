@@ -33,7 +33,8 @@ class D3Example extends Component {
     //   newNode.id = 0;
     // }
     // console.log(newNode);
-
+    
+    // todo - look into using es6 "spread" instead?
     // add new data to the copy
     newStateData.push(newNode);
     // update the state data with the copied data
