@@ -5,14 +5,11 @@ import { Link } from 'react-router-dom';
 class NavBar extends Component {
     render() {
       return (
-        <header class="mdl-layout__header">
-          <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">Title</span>
-            <div class="mdl-layout-spacer"></div>
-            <nav class="mdl-navigation mdl-layout--large-screen-only">
-              <Link to="/networks">
-                <a class="mdl-navigation__link" href="/networks">Networks</a>
-              </Link>
+        <header className="mdl-layout__header">
+          <div className="mdl-layout__header-row">
+            <span className="mdl-layout-title">Title</span>
+            <div className="mdl-layout-spacer"></div>
+            <nav className="mdl-navigation mdl-layout--large-screen-only">
             </nav>
           </div>
         </header>

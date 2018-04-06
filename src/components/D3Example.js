@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import ReactFauxDOM from 'react-faux-dom';
 import * as d3 from 'd3';
 
@@ -13,30 +13,27 @@ class D3Example extends Component {
     this.click = this.click.bind(this);
   }
 
-  // todo - new structure?
-  // data: {0: {x: 343, y: 2354}}
-
   click() {
-    // create a copy of the state
+    // create a copy of the state and newNode object
     let newStateData = this.state.nodes.slice();
     let newNode = {
       x: d3.event.clientX + 5,
       y: d3.event.clientY - 50
-    }
+    };
 
-    // // todo - all of this is not quite right!
-    // let maxId = d3.max(d3.keys(this.state.nodes));
-    // if (maxId) {
-    //   newNode.id = maxId;
-    // } else {
-    //   // no nodes on canvas yet
-    //   newNode.id = 0;
-    // }
-    // console.log(newNode);
+    // create an array of ids from the array of node objects
+    let result = newStateData.map(nodeObj => nodeObj.id);
+    if (result.length > 0) {
+      // calculate the max id in the array and increment for next id
+      newNode.id = Math.max.apply(Math, result) + 1;
+    } else {
+      // no nodes on canvas yet
+      newNode.id = 0;
+    }
     
-    // todo - look into using es6 "spread" instead?
-    // add new data to the copy
+    // add new node object to the copy
     newStateData.push(newNode);
+
     // update the state data with the copied data
     this.setState({nodes: newStateData});
   }
