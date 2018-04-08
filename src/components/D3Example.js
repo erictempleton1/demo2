@@ -8,9 +8,14 @@ class D3Example extends Component {
   constructor() {
     super()
     this.state = {
-      nodes: [],
+      nodes: [
+        { id: 0, x: 50, y: 200 },
+        { id: 1, x: 200, y: 200 },
+        { id: 2, x: 300, y: 300 },
+      ],
     }
     this.click = this.click.bind(this);
+    this.drag = this.drag.bind(this);
   }
 
   click() {
@@ -37,19 +42,25 @@ class D3Example extends Component {
     // update the state data with the copied data
     this.setState({nodes: newStateData});
   }
-  
-  dragStart(d) {
-    console.log('drag start');
-    d3.select(this).raise().classed("active", true);
-  }
 
-  dragged(d) {
-    console.log(d.id);
-    d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
-  }
-
-  dragEnd(d) {
-    d3.select(this).classed("active", false);
+  drag(d, i) {
+    // get coordinates from mouse event
+    // let coords = d3.mouse(this
+      d3
+      .select(d3.select('svg')
+      .select('circle').node())
+    // );
+    let elem = d3.select('svg').select('circle').nodes();
+    // let coords = d3.mouse(elem[i]);
+    // console.log(coords);
+    console.log(elem.length);
+    
+    // update coordinates (drag)
+    // d3
+    // .select(d3.select('svg')
+    // .select('circle').node())
+    // .attr("cx", d.x = coords[0])
+    // .attr("cy", d.y = coords[1]);
   }
   
   drawChart() {
@@ -64,7 +75,7 @@ class D3Example extends Component {
       .attr("width", 700)
       .attr("height", 400)
       .style("background-color", '#F6F6F6')
-      .on('click', this.click);
+      // .on('click', this.click);
     
     svg.selectAll("circle")
     .data(this.state.nodes)
@@ -73,11 +84,14 @@ class D3Example extends Component {
     .attr("cy", function(d) { return d.y; })
     .attr("r", radius)
     .style("fill", function(d, i) { return color(i); })
-    .call(d3.drag()
-        .on("start", this.dragStart)
-        .on("drag", this.dragged)
-        .on("end", this.dragEnd)
-    );
+      .call(d3.drag()
+      .on('drag', function(d, i) {
+        let coords = d3.mouse(d3.selectAll('circle').nodes()[i]);
+        d3.select(d3.selectAll('circle').nodes()[i])
+        .attr("cx", d.x = coords[0])
+        .attr("cy", d.y = coords[1]);
+      })
+    )
 
     return el.toReact()
   }
