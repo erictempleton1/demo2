@@ -44,23 +44,16 @@ class D3Example extends Component {
   }
 
   drag(d, i) {
-    // get coordinates from mouse event
-    // let coords = d3.mouse(this
-      d3
-      .select(d3.select('svg')
-      .select('circle').node())
-    // );
-    let elem = d3.select('svg').select('circle').nodes();
-    // let coords = d3.mouse(elem[i]);
-    // console.log(coords);
-    console.log(elem.length);
-    
-    // update coordinates (drag)
-    // d3
-    // .select(d3.select('svg')
-    // .select('circle').node())
-    // .attr("cx", d.x = coords[0])
-    // .attr("cy", d.y = coords[1]);
+    // get the node and coordinates
+    let selectedNode = d3.selectAll('circle').nodes()[i];
+    let coords = d3.mouse(selectedNode);
+
+    // update the coordinates on drag
+    d3.select(selectedNode)
+    .attr("cx", d.x = coords[0])
+    .attr("cy", d.y = coords[1]);
+
+    // todo - update state or use redux and update
   }
   
   drawChart() {
@@ -75,7 +68,7 @@ class D3Example extends Component {
       .attr("width", 700)
       .attr("height", 400)
       .style("background-color", '#F6F6F6')
-      // .on('click', this.click);
+      .on('click', this.click);
     
     svg.selectAll("circle")
     .data(this.state.nodes)
@@ -85,13 +78,8 @@ class D3Example extends Component {
     .attr("r", radius)
     .style("fill", function(d, i) { return color(i); })
       .call(d3.drag()
-      .on('drag', function(d, i) {
-        let coords = d3.mouse(d3.selectAll('circle').nodes()[i]);
-        d3.select(d3.selectAll('circle').nodes()[i])
-        .attr("cx", d.x = coords[0])
-        .attr("cy", d.y = coords[1]);
-      })
-    )
+      .on('drag', this.drag)
+    );
 
     return el.toReact()
   }
