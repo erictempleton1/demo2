@@ -53,7 +53,7 @@ class D3Example extends Component {
     .attr("cx", d.x = coords[0])
     .attr("cy", d.y = coords[1]);
 
-    // todo - update state or use redux and update
+    // todo - update state (probably on end drag) or use redux and update
   }
   
   drawChart() {
