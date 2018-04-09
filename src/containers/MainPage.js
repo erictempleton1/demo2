@@ -25,7 +25,7 @@ class MainPageContainer extends Component {
                     <div className="page-content">
                         <D3Example 
                             addNode={this.props.addNode}
-                            loadTopolgy={this.props.loadTopology}/>
+                            loadTopology={this.props.loadTopology}/>
                     </div>
                 </main>
             </div>

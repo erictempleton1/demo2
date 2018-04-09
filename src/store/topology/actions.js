@@ -1,4 +1,4 @@
-import { ADD_NODE, GET_NODES } from './actionTypes';
+import { ADD_NODE, GET_TOPOLOGY } from './actionTypes';
 
 
 export const addNode = node => ({
@@ -7,6 +7,6 @@ export const addNode = node => ({
 });
 
 export const loadTopology = () => ({
-  type: GET_NODES,
+  type: GET_TOPOLOGY,
   payload: {},
 });

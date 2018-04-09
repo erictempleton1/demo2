@@ -39,7 +39,7 @@ class D3Example extends Component {
     
     // add new node object to the copy
     newStateData.push(newNode);
-    this.props.addNode({id: newNode.id, x:100, y: 100});
+    this.props.addNode(newNode);
     console.log(this.props)
 
     // update the state data with the copied data

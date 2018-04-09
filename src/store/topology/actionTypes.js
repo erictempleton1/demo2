@@ -1,2 +1,2 @@
 export const ADD_NODE = "ADD_NODE";
-export const GET_NODES = "GET_NODES";
+export const GET_TOPOLOGY = "GET_NODES";
