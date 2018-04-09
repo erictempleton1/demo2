@@ -45,13 +45,13 @@ class D3Example extends Component {
 
   drag(d, i) {
     // get the node and coordinates
-    let selectedNode = d3.selectAll('circle').nodes()[i];
+    let selectedNode = d3.selectAll('image').nodes()[i];
     let coords = d3.mouse(selectedNode);
 
     // update the coordinates on drag
     d3.select(selectedNode)
-    .attr("cx", d.x = coords[0])
-    .attr("cy", d.y = coords[1]);
+    .attr("x", d.x = coords[0])
+    .attr("y", d.y = coords[1]);
 
     // todo - update state (probably on end drag) or use redux and update
   }
@@ -60,9 +60,6 @@ class D3Example extends Component {
     let el = ReactFauxDOM.createElement('div');
     let radius = 30;
 
-    // create random colors based on the scheme
-    let color = d3.scaleOrdinal().range(d3.schemeDark2);
-
     let svg = d3.select(el)
       .append("svg")
       .attr("width", 700)
@@ -70,13 +67,13 @@ class D3Example extends Component {
       .style("background-color", '#F6F6F6')
       .on('click', this.click);
     
-    svg.selectAll("circle")
+    svg.selectAll("svg:image")
     .data(this.state.nodes)
-    .enter().append("circle")
-    .attr("cx", function(d) { return d.x; })
-    .attr("cy", function(d) { return d.y; })
-    .attr("r", radius)
-    .style("fill", function(d, i) { return color(i); })
+    .enter()
+    .append("svg:image")
+    .attr("xlink:href", 'ic_videocam_black_48px.svg')
+    .attr("x", function(d) { return d.x; })
+    .attr("y", function(d) { return d.y; })
       .call(d3.drag()
       .on('drag', this.drag)
     );
