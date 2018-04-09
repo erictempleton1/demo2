@@ -6,7 +6,7 @@ export const addNode = node => ({
   payload: node,
 });
 
-export const getNodes = () => ({
+export const loadTopology = () => ({
   type: GET_NODES,
   payload: {},
 });

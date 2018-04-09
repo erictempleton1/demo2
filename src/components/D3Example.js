@@ -1,22 +1,9 @@
 import { Component } from 'react';
 import ReactFauxDOM from 'react-faux-dom';
-import { connect } from 'react-redux';
-import { addNode, getNodes } from './../store/topology/actions';
 import * as d3 from 'd3';
 
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addNode: node => dispatch(addNode(node)),
-    getNodes: () => dispatch(getNodes()),
-  };
-};
-
-const mapStateToProps = state => {
-  return { nodes: state.nodes };
-};
-
-class D3ExampleComp extends Component {
+class D3Example extends Component {
 
   constructor() {
     super()
@@ -101,5 +88,4 @@ class D3ExampleComp extends Component {
   }
 }
 
-const D3Example = connect(mapStateToProps, mapDispatchToProps)(D3ExampleComp);
 export default D3Example;
