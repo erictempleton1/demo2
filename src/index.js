@@ -10,8 +10,8 @@ import { Provider } from 'react-redux';
 import store from './store/index';
 
 import { BrowserRouter, Route } from 'react-router-dom';
-import MainPage from './views/MainPage';
-import NetworksPage from './views/NetworksPage';
+import MainPage from './containers/MainPage';
+import NetworksPage from './containers/NetworksPage';
 
 
 ReactDOM.render((

@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  return { nodes: state.articles };
+  return { nodes: state.nodes };
 };
 
 class D3ExampleComp extends Component {
