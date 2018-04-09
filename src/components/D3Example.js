@@ -1,9 +1,19 @@
 import { Component } from 'react';
 import ReactFauxDOM from 'react-faux-dom';
 import * as d3 from 'd3';
+import { connect } from 'react-redux';
+import { addNode } from './../store/topology/actions';
 
 
-class D3Example extends Component {
+const mapDispatchToProps = dispatch => ({
+  addNode: node => dispatch(addNode(node)),
+});
+
+const mapStateToProps = (state) => {
+  return { nodes: state };
+};
+
+class D3ExampleComponent extends Component {
 
   constructor() {
     super()
@@ -39,7 +49,8 @@ class D3Example extends Component {
     
     // add new node object to the copy
     newStateData.push(newNode);
-    this.props.addNode(newNode);
+    this.props.addNode({newNode});
+    console.log(this.props.nodes);
 
     // update the state data with the copied data
     this.setState({nodes: newStateData});
@@ -87,4 +98,6 @@ class D3Example extends Component {
   }
 }
 
+
+const D3Example = connect(mapStateToProps, mapDispatchToProps)(D3ExampleComponent);
 export default D3Example;

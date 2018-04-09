@@ -1,4 +1,4 @@
-import { ADD_NODE, GET_TOPOLOGY } from './actionTypes';
+import { ADD_NODE } from './actionTypes';
 
 const initialState = {
     nodes: [],
@@ -11,8 +11,6 @@ const topologyReducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case ADD_NODE:
             return { ...state, nodes: [ ...state.nodes, action.node ] };
-        case GET_TOPOLOGY:
-            return state.nodes;
         default:
             return state;
     }
