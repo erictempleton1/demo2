@@ -9,9 +9,9 @@ class D3Example extends Component {
     super()
     this.state = {
       nodes: [
-        { id: 0, x: 50, y: 200 },
-        { id: 1, x: 200, y: 200 },
-        { id: 2, x: 300, y: 300 },
+        // { id: 0, x: 50, y: 200, icon: 'ic_videocam_black_48px.svg' },
+        // { id: 1, x: 200, y: 200, icon: 'ic_videocam_black_48px.svg' },
+        // { id: 2, x: 300, y: 300, icon: 'ic_videocam_black_48px.svg' },
       ],
     }
     this.click = this.click.bind(this);
@@ -23,7 +23,8 @@ class D3Example extends Component {
     let newStateData = this.state.nodes.slice();
     let newNode = {
       x: d3.event.clientX + 5,
-      y: d3.event.clientY - 50
+      y: d3.event.clientY - 50,
+      icon: 'ic_videocam_black_48px.svg'
     };
 
     // create an array of ids from the array of node objects
@@ -71,7 +72,7 @@ class D3Example extends Component {
     .data(this.state.nodes)
     .enter()
     .append("svg:image")
-    .attr("xlink:href", 'ic_videocam_black_48px.svg')
+    .attr("xlink:href", function(d) { return d.icon })
     .attr("x", function(d) { return d.x; })
     .attr("y", function(d) { return d.y; })
       .call(d3.drag()
