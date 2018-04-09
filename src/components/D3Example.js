@@ -9,28 +9,20 @@ const mapDispatchToProps = dispatch => ({
   addNode: node => dispatch(addNode(node)),
 });
 
-const mapStateToProps = (state) => {
-  return { nodes: state };
-};
+const mapStateToProps = state => ({
+  nodes: state.topologyReducer.nodes,
+});
+
 
 class D3ExampleComponent extends Component {
 
   constructor() {
-    super()
-    this.state = {
-      nodes: [
-        // { id: 0, x: 50, y: 200, icon: 'ic_videocam_black_48px.svg' },
-        // { id: 1, x: 200, y: 200, icon: 'ic_videocam_black_48px.svg' },
-        // { id: 2, x: 300, y: 300, icon: 'ic_videocam_black_48px.svg' },
-      ],
-    }
+    super();
     this.click = this.click.bind(this);
     this.drag = this.drag.bind(this);
   }
 
   click() {
-    // create a copy of the state and newNode object
-    let newStateData = this.state.nodes.slice();
     let newNode = {
       x: d3.event.clientX + 5,
       y: d3.event.clientY - 50,
@@ -38,7 +30,7 @@ class D3ExampleComponent extends Component {
     };
 
     // create an array of ids from the array of node objects
-    let result = newStateData.map(nodeObj => nodeObj.id);
+    let result = this.props.nodes.map(nodeObj => nodeObj.id);
     if (result.length > 0) {
       // calculate the max id in the array and increment for next id
       newNode.id = Math.max.apply(Math, result) + 1;
@@ -47,13 +39,8 @@ class D3ExampleComponent extends Component {
       newNode.id = 0;
     }
     
-    // add new node object to the copy
-    newStateData.push(newNode);
-    this.props.addNode({newNode});
-    console.log(this.props.nodes);
-
-    // update the state data with the copied data
-    this.setState({nodes: newStateData});
+    // add new node object to redux storage
+    this.props.addNode(newNode);
   }
 
   drag(d, i) {
@@ -80,7 +67,7 @@ class D3ExampleComponent extends Component {
       .on('click', this.click);
     
     svg.selectAll("svg:image")
-    .data(this.state.nodes)
+    .data(this.props.nodes)
     .enter()
     .append("svg:image")
     .attr("xlink:href", function(d) { return d.icon })
@@ -99,5 +86,9 @@ class D3ExampleComponent extends Component {
 }
 
 
-const D3Example = connect(mapStateToProps, mapDispatchToProps)(D3ExampleComponent);
+const D3Example = connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(D3ExampleComponent);
+
 export default D3Example;
