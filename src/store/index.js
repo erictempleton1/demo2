@@ -1,6 +1,9 @@
-import { createStore } from 'redux';
-import rootReducer from '../reducer/index';
+import { createStore, combineReducers } from 'redux'
+import topologyReducer from './topology/reducer';
 
+const reducer = combineReducers({
+  topologyReducer
+});
 
-const store  = createStore(rootReducer);
+const store  = createStore(reducer);
 export default store;
