@@ -10,9 +10,9 @@ const initialState = {
 const topologyReducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case ADD_NODE:
-            return { ...state, nodes: [ ...state.nodes, action.payload ] };
+            return { ...state, nodes: [ ...state.nodes, action.node ] };
         case GET_TOPOLOGY:
-            return state;
+            return state.nodes;
         default:
             return state;
     }
