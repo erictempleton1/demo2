@@ -1,0 +1,1 @@
+export const SET_ACTIVE_NODE_ICON = "SET_ACTIVE_NODE_ICON";
