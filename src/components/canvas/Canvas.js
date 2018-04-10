@@ -44,6 +44,18 @@ class CanvasComponent extends Component {
     this.props.addNode(newNode);
   }
 
+  handleMouseOver(d, i) {
+    let selectedNode = d3.selectAll('image').nodes()[i];
+    d3.select(selectedNode)
+    .attr("height", 55);
+  }
+
+  handleMouseOut(d, i) {
+    let selectedNode = d3.selectAll('image').nodes()[i];
+    d3.select(selectedNode)
+    .attr("height", 48);
+  }
+
   drag(d, i) {
     // get the node and coordinates
     let selectedNode = d3.selectAll('image').nodes()[i];
@@ -75,8 +87,10 @@ class CanvasComponent extends Component {
     .attr("x", function(d) { return d.x; })
     .attr("y", function(d) { return d.y; })
       .call(d3.drag()
-      .on('drag', this.drag)
-    );
+      .on('drag', this.drag))
+    .on('mouseover', this.handleMouseOver)
+    .on('mouseout', this.handleMouseOut);
+
 
     return el.toReact()
   }
