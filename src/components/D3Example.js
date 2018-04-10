@@ -61,8 +61,8 @@ class D3ExampleComponent extends Component {
 
     let svg = d3.select(el)
       .append("svg")
-      .attr("width", 700)
-      .attr("height", 400)
+      .attr("width", "100%")
+      .attr("height", 800)
       .style("background-color", '#F6F6F6')
       .on('click', this.click);
     
