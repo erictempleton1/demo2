@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from '../components/NavBar';
-import NetworksTable from '../components/NetworksTable';
+import NavBar from '../components/navbar/NavBar';
+import NetworksTable from '../components/networks_table/NetworksTable';
 
 
 class NetworksPage extends Component {

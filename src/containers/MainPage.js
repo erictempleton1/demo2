@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import NavBar from '../components/NavBar';
-import D3Example from '../components/D3Example';
-import ToolBar from '../components/ToolBar';
+import NavBar from '../components/navbar/NavBar';
+import Canvas from '../components/canvas/Canvas';
+import ToolBar from '../components/toolbar/ToolBar';
 
 
 class MainPageContainer extends Component {
@@ -13,7 +13,7 @@ class MainPageContainer extends Component {
                     <div className="page-content">
                         <div class="mdl-grid">
                             <div class="mdl-cell mdl-cell--10-col">
-                                <D3Example addNode={this.props.addNode} />
+                                <Canvas addNode={this.props.addNode} />
                             </div>
                             <div class="mdl-cell mdl-cell--2-col">
                                 <ToolBar addNode={this.props.addNode} />

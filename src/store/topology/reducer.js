@@ -4,9 +4,6 @@ const initialState = {
     nodes: [],
 };
 
-// note: as reducers grow, split them into files and use combineReducers via redux
-// https://www.valentinog.com/blog/react-redux-tutorial-beginners/
-
 const topologyReducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case ADD_NODE:
